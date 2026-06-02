@@ -81,6 +81,15 @@ if st.session_state.page == 'home':
             background: #c084fc20;
             border-color: #a855f7;
         }
+        
+        .instruction {
+            font-family: 'SF Mono', monospace;
+            font-size: 0.7rem;
+            color: #8b5cf6;
+            text-align: center;
+            margin-top: 2rem;
+            line-height: 1.8;
+        }
     </style>
     """, unsafe_allow_html=True)
     
@@ -92,10 +101,10 @@ if st.session_state.page == 'home':
     </div>
     """, unsafe_allow_html=True)
     
-    # Nút START
+    # Nút START (đã bỏ > và _)
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button("> START_", use_container_width=True):
+        if st.button("START", use_container_width=True):
             # Tạo placeholder cho hiệu ứng loading
             loading_placeholder = st.empty()
             
@@ -110,6 +119,16 @@ if st.session_state.page == 'home':
             loading_placeholder.empty()
             st.session_state.page = 'camera'
             st.rerun()
+    
+    # Thêm text mô tả cách sử dụng
+    st.markdown("""
+    <div class="instruction">
+        >;> CHUC NANG: NHAN START DE BAT DAU<br>
+        >;> CHUP ANH BAN TAY CUA BAN<br>
+        >;> HE THONG SE PHAN TICH VA DU DOAN<br>
+        >;> KET QUA SE HIEN THI SAU KHI CHUP
+    </div>
+    """, unsafe_allow_html=True)
 
 # ============================================
 # TRANG CAMERA - CHỤP ẢNH BÀN TAY
@@ -151,6 +170,15 @@ elif st.session_state.page == 'camera':
         .stButton > button:hover {
             background: #c084fc20;
         }
+        
+        .instruction {
+            font-family: 'SF Mono', monospace;
+            font-size: 0.65rem;
+            color: #8b5cf6;
+            text-align: center;
+            margin-top: 2rem;
+            line-height: 1.8;
+        }
     </style>
     """, unsafe_allow_html=True)
     
@@ -168,7 +196,17 @@ elif st.session_state.page == 'camera':
         if camera_image is not None:
             st.image(camera_image, caption="ANH BAN TAY CUA BAN", use_container_width=True)
             
-            if st.button("> DU DOAN", use_container_width=True):
+            if st.button("DU DOAN", use_container_width=True):
                 with st.spinner("DANG PHAN TICH..."):
                     time.sleep(2)
                 st.success("KET QUA SE HIEN THI O DAY!")
+    
+    # Thêm text mô tả ở trang camera
+    st.markdown("""
+    <div class="instruction">
+        >;> HUONG DAN:<br>
+        >;> DAT BAN TAY VAO KHUNG HINH<br>
+        >;> NHAN NUT CHUP DE LUU ANH<br>
+        >;> NHAN DU DOAN DE XEM KET QUA
+    </div>
+    """, unsafe_allow_html=True)
