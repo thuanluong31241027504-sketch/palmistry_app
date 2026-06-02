@@ -3,7 +3,7 @@ import random
 import time
 
 # ============================================
-# CẤU HÌNH TRANG (PHẢI ĐẦU TIÊN)
+# CẤU HÌNH TRANG
 # ============================================
 st.set_page_config(
     page_title="✨ PALMISTRY - TIÊN ĐOÁN PIXEL ✨",
@@ -22,6 +22,7 @@ st.markdown("""
     /* Nền tím đen gradient */
     .stApp {
         background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a0a1a 100%);
+        min-height: 100vh;
     }
     
     /* Tất cả text */
@@ -29,13 +30,13 @@ st.markdown("""
         font-family: 'Press Start 2P', 'Share Tech Mono', monospace !important;
     }
     
-    /* Container cho chữ PALMISTRY động */
+    /* Hiệu ứng glow cho chữ PALMISTRY */
     @keyframes textGlow {
         0% {
             text-shadow: 0 0 5px #8b5cf6, 0 0 10px #8b5cf6, 0 0 20px #7e22ce;
         }
         50% {
-            text-shadow: 0 0 15px #a78bfa, 0 0 30px #a855f7, 0 0 45px #7e22ce;
+            text-shadow: 0 0 20px #c084fc, 0 0 40px #a855f7, 0 0 60px #7e22ce;
         }
         100% {
             text-shadow: 0 0 5px #8b5cf6, 0 0 10px #8b5cf6, 0 0 20px #7e22ce;
@@ -43,9 +44,9 @@ st.markdown("""
     }
     
     @keyframes textPulse {
-        0% { opacity: 0.7; letter-spacing: 8px; }
-        50% { opacity: 1; letter-spacing: 12px; }
-        100% { opacity: 0.7; letter-spacing: 8px; }
+        0% { opacity: 0.9; letter-spacing: 4px; }
+        50% { opacity: 1; letter-spacing: 8px; }
+        100% { opacity: 0.9; letter-spacing: 4px; }
     }
     
     @keyframes borderPulse {
@@ -54,46 +55,33 @@ st.markdown("""
         100% { border-color: #6d28d9; box-shadow: 0 0 10px rgba(139, 92, 246, 0.3); }
     }
     
-    @keyframes flicker {
-        0% { opacity: 0.8; }
-        5% { opacity: 1; }
-        10% { opacity: 0.9; }
-        15% { opacity: 1; }
-        20% { opacity: 0.95; }
-        100% { opacity: 1; }
-    }
-    
-    /* Hiệu ứng ma trận rớt chữ */
-    @keyframes matrixRain {
-        0% { background-position: 0% 0%; }
-        100% { background-position: 0% 100%; }
-    }
-    
-    /* Text chính PALMISTRY */
-    .palmistry-text {
+    /* Chữ PALMISTRY to, sáng, đơn giản */
+    .palmistry-title {
         font-family: 'Press Start 2P', monospace;
-        font-size: 3rem;
+        font-size: 4rem;
         font-weight: bold;
         text-align: center;
-        background: linear-gradient(135deg, #c4b5fd, #a78bfa, #7e22ce, #a855f7);
-        background-size: 300% 300%;
+        color: #c084fc;
+        animation: textGlow 1.5s ease-in-out infinite, textPulse 2s ease-in-out infinite;
+        letter-spacing: 8px;
+        margin: 30px 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #e9d5ff, #c084fc, #a855f7);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        animation: textGlow 2s ease-in-out infinite, textPulse 3s ease-in-out infinite;
-        letter-spacing: 8px;
-        margin: 0;
-        padding: 20px;
     }
     
-    /* Hiệu chữ nhỏ phụ */
+    /* Dòng chữ nhỏ bên dưới */
     .subtitle {
-        font-family: 'Share Tech Mono', monospace;
+        font-family: 'Press Start 2P', monospace;
         font-size: 0.6rem;
         text-align: center;
         color: #a78bfa;
-        animation: flicker 3s infinite;
         letter-spacing: 2px;
+        margin-top: -10px;
+        margin-bottom: 30px;
+        animation: textGlow 2s infinite;
     }
     
     /* Button pixel */
@@ -124,41 +112,12 @@ st.markdown("""
         border-radius: 0px !important;
         color: #e9d5ff !important;
         font-family: 'Share Tech Mono', monospace !important;
-        font-size: 0.9rem !important;
+        font-size: 0.8rem !important;
     }
     
     .stTextInput > div > div > input:focus {
         border-color: #a855f7 !important;
         box-shadow: 0 0 10px #8b5cf6 !important;
-    }
-    
-    /* Text area */
-    .stTextArea > div > div > textarea {
-        background-color: #0f0719 !important;
-        border: 2px solid #7e22ce !important;
-        border-radius: 0px !important;
-        color: #e9d5ff !important;
-        font-family: 'Share Tech Mono', monospace !important;
-    }
-    
-    /* Select box */
-    .stSelectbox > div > div {
-        background-color: #0f0719 !important;
-        border: 2px solid #7e22ce !important;
-        border-radius: 0px !important;
-    }
-    
-    /* Info/Warning/Success boxes */
-    .stAlert {
-        background-color: #1a0f2e !important;
-        border-left: 4px solid #8b5cf6 !important;
-        border-radius: 0px !important;
-    }
-    
-    /* Divider */
-    hr {
-        border-color: #4c1d95 !important;
-        border-width: 2px !important;
     }
     
     /* Sidebar */
@@ -186,55 +145,43 @@ st.markdown("""
     }
     
     /* Loading animation */
-    @keyframes dotPulse {
-        0%, 100% { opacity: 0.2; }
-        50% { opacity: 1; }
-    }
-    
     .loading-dots {
         font-family: 'Press Start 2P', monospace;
-        font-size: 1rem;
+        font-size: 0.8rem;
         color: #a78bfa;
+        text-align: center;
     }
     
-    /* Star decoration */
-    .star {
-        color: #a855f7;
-        animation: textGlow 1.5s infinite;
-        display: inline-block;
+    hr {
+        border-color: #4c1d95 !important;
+        border-width: 2px !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ============================================
-# HIỂN THỊ CHỮ PALMISTRY ĐỘNG
+# HIỂN THỊ CHỮ PALMISTRY - ĐƠN GIẢN, TO, SÁNG
 # ============================================
 
-# Tạo hiệu ứng chữ PALMISTRY sáng rực
 st.markdown("""
-<div style="text-align: center; padding: 2rem 0;">
-    <div class="palmistry-text">
-        ██████╗░██████╗░██╗░░░░░███╗░░░███╗██╗░██████╗████████╗██████╗░██╗░░░██╗<br>
-        ██╔══██╗██╔══██╗██║░░░░░████╗░████║██║██╔════╝╚══██╔══╝██╔══██╗╚██╗░██╔╝<br>
-        ██████╔╝██████╔╝██║░░░░░██╔████╔██║██║╚█████╗░░░░██║░░░██████╔╝░╚████╔╝░<br>
-        ██╔═══╝░██╔══██╗██║░░░░░██║╚██╔╝██║██║░╚═══██╗░░░██║░░░██╔══██╗░░╚██╔╝░░<br>
-        ██║░░░░░██║░░██║███████╗██║░╚═╝░██║██║██████╔╝░░░██║░░░██║░░██║░░░██║░░░<br>
-        ╚═╝░░░░░╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝░░░╚═╝░░░<br>
+<div style="text-align: center;">
+    <div class="palmistry-title">
+        PALMISTRY
     </div>
     <div class="subtitle">
-        ═══════════════════════════════════════<br>
-        ✦ PIXEL RETRO ORACLE - TIEN DOAN BANG CHU ✦<br>
-        ═══════════════════════════════════════
+        ═══════════════════════<br>
+        ✦ PIXEL RETRO ORACLE ✦<br>
+        ═══════════════════════
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 # ============================================
-# HÀM TIÊN ĐOÁN NGẪU NHIÊN
+# HÀM TIÊN ĐOÁN
 # ============================================
 def tien_doan():
     cac_cau_tien_doan = [
-        "✨ TUONG LAI CUA BAN SE NHU NHUNG DONG CHU SANG✨",
+        "✨ TUONG LAI CUA BAN SE RUC RO NHU ANH SANG ✨",
         "🎮 MOT CO HOI MOI DANG DEN RAT GAN. HAY NAM BAT! 🎮",
         "💜 DIEU BAN DANG TIM KIEM O NGAY TRUOC MAT 💜",
         "🔮 VU TRU DANG MIM CUOI VOI BAN HOM NAY 🔮",
@@ -248,7 +195,7 @@ def tien_doan():
     return random.choice(cac_cau_tien_doan)
 
 # ============================================
-# HIỂU ỨNG LOADING (TĂNG TRẢI NGHIỆM)
+# HIỆU ỨNG LOADING
 # ============================================
 def loading_animation():
     placeholder = st.empty()
@@ -266,20 +213,19 @@ def loading_animation():
 # GIAO DIỆN CHÍNH
 # ============================================
 
-# Tạo 2 cột cho bố cục
+# Tạo 2 cột
 col_left, col_right = st.columns([1, 1.5])
 
 with col_left:
     st.markdown("""
     <div style="text-align: center; padding: 1rem;">
-        <p style="font-size: 2rem;">🔮</p>
-        <p style="font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #a78bfa;">
-        &gt;_ QUA CAU TIEN TRI &lt;
+        <p style="font-size: 2.5rem;">🔮</p>
+        <p style="font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #a78bfa;">
+        &gt;_ NUT TIEN TRI &lt;
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Nút để tiên đoán với hiệu ứng
     nut_bam = st.button("✨ NHAN DE TIEN DOAN ✨", use_container_width=True)
     
     if nut_bam:
@@ -290,29 +236,27 @@ with col_left:
 with col_right:
     st.markdown("""
     <div style="margin-bottom: 1rem;">
-        <p style="font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #c4b5fd;">
-        >_ NHAP CAU HOI:
+        <p style="font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #c4b5fd;">
+        >_ NHAP CAU HOI CUA BAN:
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Text input
     cau_hoi = st.text_input(
         "",
-        placeholder="[ NHAP CAU HOI CUA BAN VAO DAY ]",
+        placeholder="[ NHAP CAU HOI VAO DAY ]",
         key="cau_hoi_input",
         label_visibility="collapsed"
     )
     
     st.markdown("""
     <div style="margin: 1.5rem 0 0.5rem 0;">
-        <p style="font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #c4b5fd;">
+        <p style="font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #c4b5fd;">
         >_ KET QUA TIEN DOAN:
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Hiển thị kết quả dự đoán
     if 'du_doan' in st.session_state:
         st.markdown(f"""
         <div class="result-box">
@@ -322,13 +266,13 @@ with col_right:
             <p style="
                 font-family: 'Share Tech Mono', monospace;
                 color: #a78bfa;
-                font-size: 0.55rem;
+                font-size: 0.45rem;
                 margin-top: 1rem;
                 text-align: right;
                 border-top: 1px solid #4c1d95;
                 padding-top: 0.5rem;
             ">
-            &gt;_ PALMISTRY PIXEL ORACLE v2.0 _&lt;
+            &gt;_ PALMISTRY PIXEL ORACLE _&lt;
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -340,18 +284,17 @@ with col_right:
             padding: 1.5rem;
             text-align: center;
         ">
-            <p style="color: #6b21a5; font-family: 'Press Start 2P', monospace; font-size: 0.55rem;">
+            <p style="color: #6b21a5; font-family: 'Press Start 2P', monospace; font-size: 0.5rem;">
             [???] CHUA CO TIEN DOAN NAO [???]<br>
             &gt;_ HAY NHAN NUT BEN TRAI _&lt;
             </p>
         </div>
         """, unsafe_allow_html=True)
     
-    # Hiển thị câu hỏi đã nhập
     if cau_hoi:
         st.markdown(f"""
         <div style="margin-top: 1.5rem;">
-            <p style="color: #8b5cf6; font-size: 0.55rem; font-family: 'Share Tech Mono', monospace;">
+            <p style="color: #8b5cf6; font-size: 0.45rem; font-family: 'Share Tech Mono', monospace;">
             &gt; CAU HOI CUA BAN:
             </p>
             <p style="
@@ -359,7 +302,7 @@ with col_right:
                 border-left: 3px solid #8b5cf6;
                 padding: 0.5rem;
                 font-family: 'Share Tech Mono', monospace;
-                font-size: 0.65rem;
+                font-size: 0.6rem;
                 color: #d8b4fe;
             ">
             "{cau_hoi}"
@@ -373,9 +316,9 @@ st.markdown("""
 <div style="text-align: center; margin-top: 2rem;">
     <p style="
         font-family: 'Press Start 2P', monospace; 
-        font-size: 0.4rem; 
+        font-size: 0.35rem; 
         color: #6b21a5;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
     ">
     ═══════════════════════════════════════════════<br>
     [ PALMISTRY PIXEL SYSTEM - ONLINE ]<br>
@@ -390,8 +333,8 @@ with st.sidebar:
     st.markdown("""
     <div style="text-align: center;">
         <p style="font-size: 2rem;">🎮</p>
-        <p style="font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: #a78bfa;">
-        PALMISTRY<br>INFO
+        <p style="font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #a78bfa;">
+        PALMISTRY<br>PIXEL INFO
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -399,7 +342,7 @@ with st.sidebar:
     st.markdown("---")
     
     st.markdown("""
-    **⚡ HUONG DAN SU DUNG:**
+    **⚡ HUONG DAN:**
     
     1. Nhap cau hoi cua ban
     2. Nhan nut ben trai
@@ -409,12 +352,12 @@ with st.sidebar:
     
     **💜 THONG DIEP:**
     Tien doan mang tinh giai tri,
-    nhung hay luon giu niem tin
-    vao nhung dieu tot dep!
+    hay luon giu niem tin vao
+    nhung dieu tot dep!
     
     ---
     
-    **🔮 CHUC NANG:**
+    **🔮 TINH NANG:**
     - Tien doan ngau nhien
     - Hieu ung chuyen dong
     - Giao dien pixel retro
@@ -422,11 +365,9 @@ with st.sidebar:
     ---
     """)
     
-    # Thêm vài ngôi sao trang trí
     st.markdown("""
     <div style="text-align: center; padding: 1rem;">
-        <span class="star">✦</span> <span class="star">✧</span> <span class="star">✦</span> <span class="star">✧</span> <span class="star">✦</span>
-        <p style="font-size: 0.45rem; color: #4c1d95; margin-top: 0.5rem;">
+        <p style="font-size: 0.35rem; color: #4c1d95;">
         PIXEL MODE v2.0<br>
         STATUS: ACTIVE
         </p>
