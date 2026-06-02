@@ -41,7 +41,6 @@ if st.session_state.page == 'home':
             font-weight: 400;
         }
         
-        /* Tắt nháy của palmistry - vẫn để dấu _ nhưng không nháy */
         .cursor {
             display: inline-block;
             width: 12px;
@@ -105,10 +104,17 @@ if st.session_state.page == 'home':
             width: 8px;
             margin-left: 2px;
         }
+        
+        .static-underscore {
+            display: inline-block;
+            width: 8px;
+            margin-left: 2px;
+            opacity: 1;
+        }
     </style>
     """, unsafe_allow_html=True)
     
-    # Chữ PALMISTRY không nháy (vẫn có dấu _ nhưng đứng yên)
+    # Chữ PALMISTRY không nháy
     st.markdown("""
     <div style="text-align: center;">
         <div class="palmistry-title">
@@ -133,12 +139,12 @@ if st.session_state.page == 'home':
             st.session_state.page = 'camera'
             st.rerun()
     
-    # 3 dòng text hướng dẫn (có nháy)
+    # 3 dòng text: dòng 1,2 tắt nháy - dòng 3 nháy
     st.markdown("""
     <div class="instruction-container">
         <div class="instruction">
-            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="blinking-underscore">_</span><br>
-            > nhấn nút phân tích app tự động nhận diện các đường chỉ tay chính<span class="blinking-underscore">_</span><br>
+            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="static-underscore">_</span><br>
+            > nhấn "phân tích" - app tự động nhận diện các đường chỉ tay chính<span class="static-underscore">_</span><br>
             > đọc kết quả giải mã đường sinh mệnh, trí tuệ, tình cảm và vận mệnh<span class="blinking-underscore">_</span>
         </div>
     </div>
@@ -212,6 +218,13 @@ elif st.session_state.page == 'camera':
             width: 8px;
             margin-left: 2px;
         }
+        
+        .static-underscore {
+            display: inline-block;
+            width: 8px;
+            margin-left: 2px;
+            opacity: 1;
+        }
     </style>
     """, unsafe_allow_html=True)
     
@@ -233,12 +246,12 @@ elif st.session_state.page == 'camera':
                     time.sleep(2)
                 st.success("kết quả sẽ hiển thị ở đây!")
     
-    # 3 dòng text hướng dẫn chụp ảnh và đọc kết quả (có nháy)
+    # 3 dòng text: dòng 1,2 tắt nháy - dòng 3 nháy
     st.markdown("""
     <div class="instruction-container">
         <div class="instruction">
-            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="blinking-underscore">_</span><br>
-            > nhấn "phân tích" - app tự động nhận diện các đường chỉ tay chính<span class="blinking-underscore">_</span><br>
+            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="static-underscore">_</span><br>
+            > nhấn "phân tích" - app tự động nhận diện các đường chỉ tay chính<span class="static-underscore">_</span><br>
             > đọc kết quả giải mã đường sinh mệnh, trí tuệ, tình cảm và vận mệnh<span class="blinking-underscore">_</span>
         </div>
     </div>
