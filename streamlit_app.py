@@ -1,18 +1,46 @@
 import streamlit as st
 
-st.set_page_config(layout="centered")
+# ============================================
+# CẤU HÌNH TRANG
+# ============================================
+st.set_page_config(
+    page_title="PALMISTRY",
+    page_icon="",
+    layout="centered"
+)
 
+# ============================================
+# CSS - BACKGROUND TÍM + FONT CODE PYTHON
+# ============================================
 st.markdown("""
 <style>
-    .test-font {
-        font-family: 'Courier New', monospace;
-        font-size: 2rem;
-        color: red;
+    /* Nền tím đậm giống terminal */
+    .stApp {
+        background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a0a1a 100%);
+        min-height: 100vh;
+    }
+    
+    /* Font code giống trong Python IDE */
+    .palmistry-title {
+        font-family: 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
+        font-size: 3rem;
+        text-align: center;
+        color: #c084fc;
+        letter-spacing: 1px;
+        margin-top: 80px;
+        padding: 20px;
+        font-weight: normal;
     }
 </style>
-<div class="test-font">
-    ABC 123
-</div>
 """, unsafe_allow_html=True)
 
-st.write("Dòng này dùng font mặc định")
+# ============================================
+# HIỂN THỊ CHỮ PALMISTRY
+# ============================================
+st.markdown("""
+<div style="text-align: center;">
+    <div class="palmistry-title">
+        PALMISTRY
+    </div>
+</div>
+""", unsafe_allow_html=True)
