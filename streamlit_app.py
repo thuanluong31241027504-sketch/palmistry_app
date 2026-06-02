@@ -143,15 +143,15 @@ if st.session_state.page == 'home':
     st.markdown("""
     <div class="instruction-container">
         <div class="instruction">
-            > chụp ảnh lòng bàn tay đủ sáng, nằm trong khung hình<span class="static-underscore">_</span><br>
-            > nhấn nút app sẽ tự động nhận diện các đường chỉ tay<span class="static-underscore">_</span><br>
+            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="static-underscore">_</span><br>
+            > nhấn "phân tích" - app tự động nhận diện các đường chỉ tay chính<span class="static-underscore">_</span><br>
             > đọc kết quả giải mã đường sinh mệnh, trí tuệ, tình cảm và vận mệnh<span class="blinking-underscore">_</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
 # ============================================
-# TRANG CAMERA - CHỤP ẢNH BÀN TAY
+# TRANG CAMERA - CHỤP ẢNH BÀN TAY (BỎ TEXT HƯỚNG DẪN)
 # ============================================
 elif st.session_state.page == 'camera':
     
@@ -168,20 +168,6 @@ elif st.session_state.page == 'camera':
             min-height: 100vh;
         }
         
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        
-        .page-title {
-            font-family: 'SF Mono', 'Menlo', monospace;
-            font-size: 1.2rem;
-            text-align: center;
-            color: #c084fc;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-        
         .stButton > button {
             background: transparent;
             color: #c084fc !important;
@@ -195,43 +181,7 @@ elif st.session_state.page == 'camera':
         .stButton > button:hover {
             background: #c084fc20;
         }
-        
-        .instruction {
-            font-family: 'SF Mono', monospace;
-            font-size: 0.65rem;
-            color: #8b5cf6;
-            margin-top: 2rem;
-            line-height: 1.8;
-            display: inline-block;
-            text-align: left;
-        }
-        
-        .instruction-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        
-        .blinking-underscore {
-            animation: blink 1s step-end infinite;
-            display: inline-block;
-            width: 8px;
-            margin-left: 2px;
-        }
-        
-        .static-underscore {
-            display: inline-block;
-            width: 8px;
-            margin-left: 2px;
-            opacity: 1;
-        }
     </style>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div class="page-title">
-        > chụp ảnh bàn tay của bạn
-    </div>
     """, unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -245,14 +195,3 @@ elif st.session_state.page == 'camera':
                 with st.spinner("đang phân tích..."):
                     time.sleep(2)
                 st.success("kết quả sẽ hiển thị ở đây!")
-    
-    # 3 dòng text: dòng 1,2 tắt nháy - dòng 3 nháy
-    st.markdown("""
-    <div class="instruction-container">
-        <div class="instruction">
-            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="static-underscore">_</span><br>
-            > nhấn "phân tích" - app tự động nhận diện các đường chỉ tay chính<span class="static-underscore">_</span><br>
-            > đọc kết quả giải mã đường sinh mệnh, trí tuệ, tình cảm và vận mệnh<span class="blinking-underscore">_</span>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
