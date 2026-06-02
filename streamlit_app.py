@@ -90,43 +90,47 @@ if st.session_state.page == 'home':
             margin-top: 2rem;
             line-height: 1.8;
         }
+        
+        .blinking-underscore {
+            animation: blink 1s step-end infinite;
+            display: inline-block;
+            width: 8px;
+            margin-left: 2px;
+        }
     </style>
     """, unsafe_allow_html=True)
     
     st.markdown("""
     <div style="text-align: center;">
         <div class="palmistry-title">
-            > PALMISTRY<span class="cursor">_</span>
+            > palmistry<span class="cursor">_</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
     
-    # Nút START (đã bỏ > và _)
+    # Nút START
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         if st.button("START", use_container_width=True):
-            # Tạo placeholder cho hiệu ứng loading
             loading_placeholder = st.empty()
             
             with loading_placeholder.container():
                 st.markdown('<div class="loader"></div>', unsafe_allow_html=True)
-                st.markdown('<p style="text-align: center; color: #c084fc; font-family: monospace;">LOADING...</p>', unsafe_allow_html=True)
+                st.markdown('<p style="text-align: center; color: #c084fc; font-family: monospace;">loading...</p>', unsafe_allow_html=True)
                 
-                # Chờ 3 giây
                 time.sleep(3)
             
-            # Xóa loading và chuyển trang
             loading_placeholder.empty()
             st.session_state.page = 'camera'
             st.rerun()
     
-    # Thêm text mô tả cách sử dụng
+    # Text mô tả với dấu > và _ nhấp nháy ở cuối mỗi dòng
     st.markdown("""
     <div class="instruction">
-        >;> CHUC NANG: NHAN START DE BAT DAU<br>
-        >;> CHUP ANH BAN TAY CUA BAN<br>
-        >;> HE THONG SE PHAN TICH VA DU DOAN<br>
-        >;> KET QUA SE HIEN THI SAU KHI CHUP
+        > nhấn start để bắt đầu<span class="blinking-underscore">_</span><br>
+        > chuẩn bị bàn tay của bạn<span class="blinking-underscore">_</span><br>
+        > hệ thống sẽ hướng dẫn chụp ảnh<span class="blinking-underscore">_</span><br>
+        > kết quả sẽ hiển thị sau khi phân tích<span class="blinking-underscore">_</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -136,7 +140,7 @@ if st.session_state.page == 'home':
 elif st.session_state.page == 'camera':
     
     st.set_page_config(
-        page_title="CHUP ANH BAN TAY",
+        page_title="palmistry",
         page_icon="",
         layout="centered"
     )
@@ -150,7 +154,7 @@ elif st.session_state.page == 'camera':
         
         .page-title {
             font-family: 'SF Mono', 'Menlo', monospace;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             text-align: center;
             color: #c084fc;
             margin-top: 40px;
@@ -179,34 +183,45 @@ elif st.session_state.page == 'camera':
             margin-top: 2rem;
             line-height: 1.8;
         }
+        
+        .blinking-underscore {
+            animation: blink 1s step-end infinite;
+            display: inline-block;
+            width: 8px;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
     </style>
     """, unsafe_allow_html=True)
     
     st.markdown("""
     <div class="page-title">
-        > CHUP ANH BAN TAY DE DU DOAN
+        > chụp ảnh bàn tay của bạn<span class="blinking-underscore">_</span>
     </div>
     """, unsafe_allow_html=True)
     
-    # Nút chụp ảnh từ camera
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         camera_image = st.camera_input("", label_visibility="collapsed")
         
         if camera_image is not None:
-            st.image(camera_image, caption="ANH BAN TAY CUA BAN", use_container_width=True)
+            st.image(camera_image, caption="bàn tay của bạn", use_container_width=True)
             
-            if st.button("DU DOAN", use_container_width=True):
-                with st.spinner("DANG PHAN TICH..."):
+            if st.button("dự đoán", use_container_width=True):
+                with st.spinner("đang phân tích..."):
                     time.sleep(2)
-                st.success("KET QUA SE HIEN THI O DAY!")
+                st.success("kết quả sẽ hiển thị ở đây!")
     
-    # Thêm text mô tả ở trang camera
+    # Text mô tả với dấu > và _ nhấp nháy ở cuối mỗi dòng
     st.markdown("""
     <div class="instruction">
-        >;> HUONG DAN:<br>
-        >;> DAT BAN TAY VAO KHUNG HINH<br>
-        >;> NHAN NUT CHUP DE LUU ANH<br>
-        >;> NHAN DU DOAN DE XEM KET QUA
+        > đặt bàn tay vào khung hình<span class="blinking-underscore">_</span><br>
+        > nhấn nút chụp để lưu ảnh<span class="blinking-underscore">_</span><br>
+        > nhấn dự đoán để xem kết quả<span class="blinking-underscore">_</span><br>
+        > kết quả dựa trên đường chỉ tay<span class="blinking-underscore">_</span>
     </div>
     """, unsafe_allow_html=True)
