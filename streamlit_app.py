@@ -143,7 +143,7 @@ if st.session_state.page == 'home':
     st.markdown("""
     <div class="instruction-container">
         <div class="instruction">
-            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="static-underscore">_</span><br>
+            > chụp ảnh lòng bàn tay đủ sáng, nằm trong khung hình<span class="static-underscore">_</span><br>
             > nhấn nút app sẽ tự động nhận diện các đường chỉ tay<span class="static-underscore">_</span><br>
             > đọc kết quả giải mã đường sinh mệnh, trí tuệ, tình cảm và vận mệnh<span class="blinking-underscore">_</span>
         </div>
