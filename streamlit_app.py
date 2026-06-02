@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 # ============================================
-# CSS - NỀN TÍM + CHỮ PALMISTRY FONT PIXEL
+# CSS - NỀN TÍM + CHỮ PALMISTRY FONT CODE
 # ============================================
 st.markdown("""
 <style>
@@ -20,17 +20,18 @@ st.markdown("""
         min-height: 100vh;
     }
     
-    /* Font pixel */
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    /* Font code */
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Source+Code+Pro&display=swap');
     
     .palmistry-title {
-        font-family: 'Press Start 2P', monospace;
-        font-size: 2.5rem;
+        font-family: 'Fira Code', 'Source Code Pro', monospace;
+        font-size: 3rem;
         text-align: center;
         color: #c084fc;
         letter-spacing: 2px;
         margin-top: 80px;
         padding: 20px;
+        font-weight: bold;
     }
 </style>
 """, unsafe_allow_html=True)
