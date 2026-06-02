@@ -25,6 +25,11 @@ if st.session_state.page == 'home':
             min-height: 100vh;
         }
         
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
         .palmistry-title {
             font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
             font-size: 2.5rem;
@@ -34,11 +39,6 @@ if st.session_state.page == 'home':
             margin-top: 80px;
             padding: 20px;
             font-weight: 400;
-        }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
         }
         
         .cursor {
@@ -107,6 +107,7 @@ if st.session_state.page == 'home':
     </style>
     """, unsafe_allow_html=True)
     
+    # Chữ PALMISTRY có nháy
     st.markdown("""
     <div style="text-align: center;">
         <div class="palmistry-title">
@@ -131,13 +132,13 @@ if st.session_state.page == 'home':
             st.session_state.page = 'camera'
             st.rerun()
     
-    # 3 dòng text, căn trái, giữa trang, nháy cùng lúc với palmistry
+    # 3 dòng text hướng dẫn (nháy cùng lúc)
     st.markdown("""
     <div class="instruction-container">
         <div class="instruction">
-            > nhấn start để bắt đầu<span class="blinking-underscore">_</span><br>
-            > chuẩn bị bàn tay của bạn<span class="blinking-underscore">_</span><br>
-            > kết quả sẽ hiển thị sau khi phân tích<span class="blinking-underscore">_</span>
+            > chụp ảnh lòng bàn tay dưới ánh sáng đủ<span class="blinking-underscore">_</span><br>
+            > tay để ngay ngắn, nhấn start để bắt đầu<span class="blinking-underscore">_</span><br>
+            > hệ thống sẽ tự động nhận diện đường chỉ tay<span class="blinking-underscore">_</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -158,6 +159,11 @@ elif st.session_state.page == 'camera':
         .stApp {
             background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a0a1a 100%);
             min-height: 100vh;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
         
         .page-title {
@@ -205,11 +211,6 @@ elif st.session_state.page == 'camera':
             width: 8px;
             margin-left: 2px;
         }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
     </style>
     """, unsafe_allow_html=True)
     
@@ -226,18 +227,18 @@ elif st.session_state.page == 'camera':
         if camera_image is not None:
             st.image(camera_image, caption="bàn tay của bạn", use_container_width=True)
             
-            if st.button("dự đoán", use_container_width=True):
+            if st.button("phân tích", use_container_width=True):
                 with st.spinner("đang phân tích..."):
                     time.sleep(2)
                 st.success("kết quả sẽ hiển thị ở đây!")
     
-    # 3 dòng text mô tả trên trang camera
+    # 3 dòng text hướng dẫn chụp ảnh và đọc kết quả
     st.markdown("""
     <div class="instruction-container">
         <div class="instruction">
-            > đặt bàn tay vào khung hình<span class="blinking-underscore">_</span><br>
-            > nhấn nút chụp để lưu ảnh<span class="blinking-underscore">_</span><br>
-            > nhấn dự đoán để xem kết quả<span class="blinking-underscore">_</span>
+            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để ngay ngắn<span class="blinking-underscore">_</span><br>
+            > nhấn phân tích - app tự động nhận diện các đường chỉ tay chính<span class="blinking-underscore">_</span><br>
+            > đọc kết quả giải mã đường sinh mệnh, trí tuệ, tình cảm và vận mệnh<span class="blinking-underscore">_</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
