@@ -10,20 +10,20 @@ st.set_page_config(
 )
 
 # ============================================
-# CSS - BACKGROUND TÍM + FONT CODE PYTHON
+# CSS - BACKGROUND TÍM + FONT CODE
 # ============================================
 st.markdown("""
 <style>
-    /* Nền tím đậm giống terminal */
+    /* Nền tím */
     .stApp {
         background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a0a1a 100%);
         min-height: 100vh;
     }
     
-    /* Font code giống trong Python IDE */
+    /* Font code */
     .palmistry-title {
         font-family: 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
-        font-size: 3rem;
+        font-size: 2.8rem;
         text-align: center;
         color: #c084fc;
         letter-spacing: 1px;
@@ -35,12 +35,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================
-# HIỂN THỊ CHỮ PALMISTRY
+# HIỂN THỊ CHỮ PALMISTRY CÓ DẤU >
 # ============================================
 st.markdown("""
 <div style="text-align: center;">
     <div class="palmistry-title">
-        PALMISTRY
+        > PALMISTRY
     </div>
 </div>
 """, unsafe_allow_html=True)
