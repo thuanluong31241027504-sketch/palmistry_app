@@ -86,9 +86,16 @@ if st.session_state.page == 'home':
             font-family: 'SF Mono', monospace;
             font-size: 0.7rem;
             color: #8b5cf6;
-            text-align: center;
             margin-top: 2rem;
             line-height: 1.8;
+            display: inline-block;
+            text-align: left;
+        }
+        
+        .instruction-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
         }
         
         .blinking-underscore {
@@ -124,13 +131,14 @@ if st.session_state.page == 'home':
             st.session_state.page = 'camera'
             st.rerun()
     
-    # Text mô tả với dấu > và _ nhấp nháy ở cuối mỗi dòng
+    # 3 dòng text, căn trái, giữa trang, nháy cùng lúc với palmistry
     st.markdown("""
-    <div class="instruction">
-        > nhấn start để bắt đầu<span class="blinking-underscore">_</span><br>
-        > chuẩn bị bàn tay của bạn<span class="blinking-underscore">_</span><br>
-        > hệ thống sẽ hướng dẫn chụp ảnh<span class="blinking-underscore">_</span><br>
-        > kết quả sẽ hiển thị sau khi phân tích<span class="blinking-underscore">_</span>
+    <div class="instruction-container">
+        <div class="instruction">
+            > nhấn start để bắt đầu<span class="blinking-underscore">_</span><br>
+            > chuẩn bị bàn tay của bạn<span class="blinking-underscore">_</span><br>
+            > kết quả sẽ hiển thị sau khi phân tích<span class="blinking-underscore">_</span>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -179,9 +187,16 @@ elif st.session_state.page == 'camera':
             font-family: 'SF Mono', monospace;
             font-size: 0.65rem;
             color: #8b5cf6;
-            text-align: center;
             margin-top: 2rem;
             line-height: 1.8;
+            display: inline-block;
+            text-align: left;
+        }
+        
+        .instruction-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
         }
         
         .blinking-underscore {
@@ -216,12 +231,13 @@ elif st.session_state.page == 'camera':
                     time.sleep(2)
                 st.success("kết quả sẽ hiển thị ở đây!")
     
-    # Text mô tả với dấu > và _ nhấp nháy ở cuối mỗi dòng
+    # 3 dòng text mô tả trên trang camera
     st.markdown("""
-    <div class="instruction">
-        > đặt bàn tay vào khung hình<span class="blinking-underscore">_</span><br>
-        > nhấn nút chụp để lưu ảnh<span class="blinking-underscore">_</span><br>
-        > nhấn dự đoán để xem kết quả<span class="blinking-underscore">_</span><br>
-        > kết quả dựa trên đường chỉ tay<span class="blinking-underscore">_</span>
+    <div class="instruction-container">
+        <div class="instruction">
+            > đặt bàn tay vào khung hình<span class="blinking-underscore">_</span><br>
+            > nhấn nút chụp để lưu ảnh<span class="blinking-underscore">_</span><br>
+            > nhấn dự đoán để xem kết quả<span class="blinking-underscore">_</span>
+        </div>
     </div>
     """, unsafe_allow_html=True)
