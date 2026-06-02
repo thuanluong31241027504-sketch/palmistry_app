@@ -138,7 +138,7 @@ if st.session_state.page == 'home':
     <div class="instruction-container">
         <div class="instruction">
             > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="blinking-underscore">_</span><br>
-            > nhấn "phân tích" - app tự động nhận diện các đường chỉ tay chính<span class="blinking-underscore">_</span><br>
+            > nhấn nút phân tích app tự động nhận diện các đường chỉ tay chính<span class="blinking-underscore">_</span><br>
             > đọc kết quả giải mã đường sinh mệnh, trí tuệ, tình cảm và vận mệnh<span class="blinking-underscore">_</span>
         </div>
     </div>
