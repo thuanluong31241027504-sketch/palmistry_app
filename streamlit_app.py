@@ -36,7 +36,7 @@ st.markdown("""
         text-align: center;
         text-shadow: 0 0 10px #8b5cf6, 0 0 20px #6d28d9;
         color: #a78bfa !important;
-        font-size: 2rem !important;
+        font-size: 1.5rem !important;
         margin-bottom: 2rem !important;
         animation: glow 2s ease-in-out infinite alternate;
     }
@@ -130,9 +130,7 @@ st.markdown("""
 # HÀM TẠO HÌNH QUẢ CẦU PIXEL
 # ============================================
 def tao_qua_cau_pixel(kich_thuoc=200, mau_chinh=(168, 85, 247), mau_vien=(216, 180, 254), do_phat_sang=0):
-    """
-    Tạo hình ảnh quả cầu phong cách pixel retro
-    """
+    """Tạo hình ảnh quả cầu phong cách pixel retro"""
     # Tạo ảnh với kích thước pixel
     img = Image.new('RGBA', (kich_thuoc, kich_thuoc), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
@@ -193,7 +191,6 @@ def tao_qua_cau_pixel(kich_thuoc=200, mau_chinh=(168, 85, 247), mau_vien=(216, 1
                     )
     
     # Thêm hiệu ứng "ma thuật" xung quanh (các pixel lấp lánh)
-    import random
     for _ in range(50):
         x = random.randint(0, kich_thuoc - pixel_size)
         y = random.randint(0, kich_thuoc - pixel_size)
@@ -209,14 +206,14 @@ def tao_qua_cau_pixel(kich_thuoc=200, mau_chinh=(168, 85, 247), mau_vien=(216, 1
 # ============================================
 def tien_doan():
     cac_cau_tien_doan = [
-        "✨ TƯƠNG LAI CỦA BẠN SẼ RỰC RỠ NHƯ PIXEL NÀY ✨",
-        "🎮 MỘT CƠ HỘI MỚI ĐANG ĐẾN GẦN... HÃY NẮM BẮT! 🎮",
-        "💜 ĐIỀU BẠN ĐANG TÌM KIẾM Ở NGAY TRƯỚC MẶT 💜",
-        "🔮 VŨ TRỤ ĐANG MỈM CƯỜI VỚI BẠN HÔM NAY 🔮",
-        "⭐ HÃY TIN VÀO TRỰC GIÁC CỦA CHÍNH MÌNH ⭐",
-        "⚡ MỘT CUỘC PHIÊU LƯU MỚI SẮP BẮT ĐẦU ⚡",
-        "🌸 NHỮNG ĐIỀU TỐT ĐẸP ĐANG ĐẾN RẤT GẦN 🌸",
-        "🎯 HÃY THEO ĐUỔI ĐAM MÊ, THÀNH CÔNG SẼ THEO SAU 🎯"
+        "✨ TUONG LAI CUA BAN SE RUC RO NHU PIXEL NAY ✨",
+        "🎮 MOT CO HOI MOI DANG DEN GAN... HAY NAM BAT! 🎮",
+        "💜 DIEU BAN DANG TIM KIEM O NGAY TRUOC MAT 💜",
+        "🔮 VU TRU DANG MIM CUOI VOI BAN HOM NAY 🔮",
+        "⭐ HAY TIN VAO TRUC GIAC CUA CHINH MINH ⭐",
+        "⚡ MOT CUOC PHIEU LUU MOI SAP BAT DAU ⚡",
+        "🌸 NHUNG DIEU TOT DEP DANG DEN RAT GAN 🌸",
+        "🎯 HAY THEO DUOI DAM ME, THANH CONG SE THEO SAU 🎯"
     ]
     return random.choice(cac_cau_tien_doan)
 
@@ -224,18 +221,18 @@ def tien_doan():
 # GIAO DIỆN CHÍNH - PHONG CÁCH PIXEL
 # ============================================
 
-# Hiệu ứng typing cho tiêu đề (tạo cảm giác retro)
+# Hiệu ứng typing cho tiêu đề
 st.markdown("""
 <div style="text-align: center;">
     <h1>
-        ███████╗██╗██╗░░░██╗███████╗██╗░░░░░<br>
-        ██╔════╝██║╚██╗░██╔╝██╔════╝██║░░░░░<br>
-        █████╗░░██║░╚████╔╝░█████╗░░██║░░░░░<br>
-        ██╔══╝░░██║░░╚██╔╝░░██╔══╝░░██║░░░░░<br>
-        ██║░░░░░██║░░░██║░░░███████╗███████╗<br>
-        ╚═╝░░░░░╚═╝░░░╚═╝░░░╚══════╝╚══════╝<br>
+        ███████╗██╗██╗░░░░░██╗██╗░░░██╗███████╗<br>
+        ██╔════╝██║╚██╗░██╔╝██║╚██╗░██╔╝██╔════╝<br>
+        █████╗░░██║░╚████╔╝░██║░╚████╔╝░█████╗░░<br>
+        ██╔══╝░░██║░░╚██╔╝░░██║░░╚██╔╝░░██╔══╝░░<br>
+        ██║░░░░░██║░░░██║░░░██║░░░██║░░░███████╗<br>
+        ╚═╝░░░░░╚═╝░░░╚═╝░░░╚═╝░░░╚═╝░░░╚══════╝<br>
     </h1>
-    <p style="color: #a78bfa; font-size: 0.7rem;">⚡ QUẢ CẦU TIÊN ĐOÁN PIXEL RETRO ⚡</p>
+    <p style="color: #a78bfa; font-size: 0.7rem;">⚡ QUA CAU TIEN DOAN PIXEL RETRO ⚡</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -245,142 +242,157 @@ st.markdown("---")
 col1, col2 = st.columns([1, 1.5])
 
 with col1:
-    st.markdown("### 🔮 QUẢ CẦU MA THUẬT")
+    st.markdown("### 🔮 QUA CAU MA THUAT")
     
     # Tạo và hiển thị quả cầu pixel
     qua_cau = tao_qua_cau_pixel(kich_thuoc=250, mau_chinh=(147, 51, 234), do_phat_sang=30)
     st.image(qua_cau, use_container_width=True)
     
     # Nút để tiên đoán
-    if st.button("✨ NHẤN ĐỂ TIÊN ĐOÁN ✨", use_container_width=True):
+    if st.button("✨ NHAN DE TIEN DOAN ✨", use_container_width=True):
         ket_qua = tien_doan()
         st.session_state['du_doan'] = ket_qua
 
 with col2:
-    st.markdown("### 💜 NHẬP CÂU HỎI CỦA BẠN")
+    st.markdown("### 💜 NHAP CAU HOI CUA BAN")
     
     # Text input với style pixel
     cau_hoi = st.text_input(
         ">_ ",
-        placeholder="Nhập câu hỏi của bạn vào đây...",
+        placeholder="Nhap cau hoi cua ban vao day...",
         key="cau_hoi_input"
     )
     
-    st.markdown("### ⚡ KẾT QUẢ TIÊN ĐOÁN")
+    st.markdown("### ⚡ KET QUA TIEN DOAN")
     
     # Hiển thị kết quả dự đoán
     if 'du_doan' in st.session_state:
-        st.markdown(f"""
-        <div style="
-            background: linear-gradient(135deg, #1a0f2e 0%, #0f0719 100%);
-            border: 2px solid #8b5cf6;
-            padding: 1.5rem;
-            margin-top: 1rem;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-        ">
-            <p style="
-                font-family: 'Press Start 2P', monospace;
-                color: #d8b4fe;
-                font-size: 0.65rem;
-                line-height: 1.5;
-                margin: 0;
-                text-shadow: 0 0 5px #8b5cf6;
-            ">
-            {st.session_state['du_doan']}
-            </p>
-            <p style="
-                font-family: 'Share Tech Mono', monospace;
-                color: #a78bfa;
-                font-size: 0.55rem;
+        st.markdown(
+            f"""
+            <div style="
+                background: linear-gradient(135deg, #1a0f2e 0%, #0f0719 100%);
+                border: 2px solid #8b5cf6;
+                padding: 1.5rem;
                 margin-top: 1rem;
-                text-align: right;
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
             ">
-            &gt;_ QUẢ CẦU TIÊN ĐOÁN &lt;
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+                <p style="
+                    font-family: 'Press Start 2P', monospace;
+                    color: #d8b4fe;
+                    font-size: 0.65rem;
+                    line-height: 1.5;
+                    margin: 0;
+                    text-shadow: 0 0 5px #8b5cf6;
+                ">
+                {st.session_state['du_doan']}
+                </p>
+                <p style="
+                    font-family: 'Share Tech Mono', monospace;
+                    color: #a78bfa;
+                    font-size: 0.55rem;
+                    margin-top: 1rem;
+                    text-align: right;
+                ">
+                &gt;_ QUA CAU TIEN DOAN &lt;
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
     else:
-        st.markdown("""
-        <div style="
-            background: #0f0719;
-            border: 2px solid #4c1d95;
-            padding: 1.5rem;
-            text-align: center;
-        ">
-            <p style="color: #6b21a5; font-family: 'Press Start 2P', monospace; font-size: 0.6rem;">
-            [?] HÃY NHẤN NÚT BÊN TRÁI<br>
-            ĐỂ NHẬN TIÊN ĐOÁN [?]
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div style="
+                background: #0f0719;
+                border: 2px solid #4c1d95;
+                padding: 1.5rem;
+                text-align: center;
+            ">
+                <p style="color: #6b21a5; font-family: 'Press Start 2P', monospace; font-size: 0.6rem;">
+                [?] HAY NHAN NUT BEN TRAI<br>
+                DE NHAN TIEN DOAN [?]
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
     
     # Hiển thị câu hỏi đã nhập (nếu có)
     if cau_hoi:
-        st.markdown(f"""
-        <div style="margin-top: 1.5rem;">
-            <p style="color: #8b5cf6; font-size: 0.6rem;">&gt; Câu hỏi của bạn:</p>
-            <p style="
-                background: #0f0719;
-                border-left: 4px solid #8b5cf6;
-                padding: 0.5rem;
-                font-family: 'Share Tech Mono', monospace;
-                font-size: 0.7rem;
-            ">
-            "{cau_hoi}"
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown(
+            f"""
+            <div style="margin-top: 1.5rem;">
+                <p style="color: #8b5cf6; font-size: 0.6rem;">&gt; Cau hoi cua ban:</p>
+                <p style="
+                    background: #0f0719;
+                    border-left: 4px solid #8b5cf6;
+                    padding: 0.5rem;
+                    font-family: 'Share Tech Mono', monospace;
+                    font-size: 0.7rem;
+                ">
+                "{cau_hoi}"
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 # Footer với hiệu ứng terminal
 st.markdown("---")
-st.markdown("""
-<div style="text-align: center; margin-top: 2rem;">
-    <p style="
-        font-family: 'Press Start 2P', monospace; 
-        font-size: 0.45rem; 
-        color: #6b21a5;
-    ">
-    ═══════════════════════════════════════<br>
-    [ PIXEL RETRO ORACLE v1.0 ]<br>
-    &gt;_ HÃY TIN VÀO NHỮNG ĐIỀU KỲ DIỆU _&lt;<br>
-    ═══════════════════════════════════════
-    </p>
-</div>
-""", unsafe_allow_html=True)
+st.markdown(
+    """
+    <div style="text-align: center; margin-top: 2rem;">
+        <p style="
+            font-family: 'Press Start 2P', monospace; 
+            font-size: 0.45rem; 
+            color: #6b21a5;
+        ">
+        ═══════════════════════════════════════<br>
+        [ PIXEL RETRO ORACLE v1.0 ]<br>
+        &gt;_ HAY TIN VAO NHUNG DIEU KY DIEU _&lt;<br>
+        ═══════════════════════════════════════
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Sidebar với thông tin thêm
 with st.sidebar:
     st.markdown("### 🎮 PIXEL INFO")
     st.markdown("---")
     st.markdown("""
-    **⚡ HƯỚNG DẪN:**
-    1. Nhập câu hỏi của bạn
-    2. Nhấn nút "NHẤN ĐỂ TIÊN ĐOÁN"
-    3. Quả cầu sẽ mách bảo cho bạn!
+    **⚡ HUONG DAN:**
+    1. Nhap cau hoi cua ban
+    2. Nhan nut "NHAN DE TIEN DOAN"
+    3. Qua cau se mach bao cho ban!
     
     ---
     
-    **💜 THÔNG ĐIỆP:**
-    Mọi lời tiên đoán đều mang
-    tính giải trí, nhưng hãy
-    luôn giữ niềm tin vào
-    những điều tốt đẹp!
+    **💜 THONG DIEP:**
+    Moi loi tien doan deu mang
+    tinh giai tri, nhung hay
+    luon giu niem tin vao
+    nhung dieu tot dep!
     
     ---
     
-    **🔧 CÀI ĐẶT PIXEL:**
-    ''')
+    **🔧 CAI DAT PIXEL:**
+    """)
     
     # Thanh điều chỉnh độ sáng của quả cầu
-    do_sang = st.slider("ĐỘ SÁNG", 0, 100, 50)
-    if st.button("TÁI TẠO QUẢ CẦU"):
+    do_sang = st.slider("DO SANG", 0, 100, 50)
+    if st.button("TAI TAO QUA CAU"):
         st.rerun()
     
-    st.markdown(f"""
-    <div style="text-align: center; margin-top: 2rem;">
-        <p style="font-size: 0.5rem; color: #4c1d95;">
-        [ SYSTEM: ONLINE ]<br>
-        &gt;_ PIXEL MODE ACTIVE _&lt;
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div style="text-align: center; margin-top: 2rem;">
+            <p style="font-size: 0.5rem; color: #4c1d95;">
+            [ SYSTEM: ONLINE ]<br>
+            &gt;_ PIXEL MODE ACTIVE _&lt;
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
