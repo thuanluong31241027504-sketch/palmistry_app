@@ -41,11 +41,12 @@ if st.session_state.page == 'home':
             font-weight: 400;
         }
         
+        /* Tắt nháy của palmistry - vẫn để dấu _ nhưng không nháy */
         .cursor {
-            animation: blink 1s step-end infinite;
             display: inline-block;
             width: 12px;
             margin-left: 5px;
+            opacity: 1;
         }
         
         /* Loading spinner */
@@ -107,11 +108,11 @@ if st.session_state.page == 'home':
     </style>
     """, unsafe_allow_html=True)
     
-    # Chữ PALMISTRY có nháy
+    # Chữ PALMISTRY không nháy (vẫn có dấu _ nhưng đứng yên)
     st.markdown("""
     <div style="text-align: center;">
         <div class="palmistry-title">
-            > palmistry<span class="cursor">_</span>
+            > palmistry_
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -132,13 +133,13 @@ if st.session_state.page == 'home':
             st.session_state.page = 'camera'
             st.rerun()
     
-    # 3 dòng text hướng dẫn (nháy cùng lúc)
+    # 3 dòng text hướng dẫn (có nháy)
     st.markdown("""
     <div class="instruction-container">
         <div class="instruction">
-            > chụp ảnh lòng bàn tay dưới ánh sáng đủ<span class="blinking-underscore">_</span><br>
-            > tay để ngay ngắn, nhấn start để bắt đầu<span class="blinking-underscore">_</span><br>
-            > hệ thống sẽ tự động nhận diện đường chỉ tay<span class="blinking-underscore">_</span>
+            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="blinking-underscore">_</span><br>
+            > nhấn "phân tích" - app tự động nhận diện các đường chỉ tay chính<span class="blinking-underscore">_</span><br>
+            > đọc kết quả giải mã đường sinh mệnh, trí tuệ, tình cảm và vận mệnh<span class="blinking-underscore">_</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -216,7 +217,7 @@ elif st.session_state.page == 'camera':
     
     st.markdown("""
     <div class="page-title">
-        > chụp ảnh bàn tay của bạn<span class="blinking-underscore">_</span>
+        > chụp ảnh bàn tay của bạn
     </div>
     """, unsafe_allow_html=True)
     
@@ -232,12 +233,12 @@ elif st.session_state.page == 'camera':
                     time.sleep(2)
                 st.success("kết quả sẽ hiển thị ở đây!")
     
-    # 3 dòng text hướng dẫn chụp ảnh và đọc kết quả
+    # 3 dòng text hướng dẫn chụp ảnh và đọc kết quả (có nháy)
     st.markdown("""
     <div class="instruction-container">
         <div class="instruction">
-            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để ngay ngắn<span class="blinking-underscore">_</span><br>
-            > nhấn phân tích - app tự động nhận diện các đường chỉ tay chính<span class="blinking-underscore">_</span><br>
+            > chụp ảnh lòng bàn tay dưới ánh sáng đủ, tay để trong khung hình<span class="blinking-underscore">_</span><br>
+            > nhấn "phân tích" - app tự động nhận diện các đường chỉ tay chính<span class="blinking-underscore">_</span><br>
             > đọc kết quả giải mã đường sinh mệnh, trí tuệ, tình cảm và vận mệnh<span class="blinking-underscore">_</span>
         </div>
     </div>
