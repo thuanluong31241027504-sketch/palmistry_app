@@ -1,6 +1,6 @@
 import streamlit as st
 import random
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import time
 import math
@@ -30,7 +30,6 @@ st.markdown("""
         font-family: 'Press Start 2P', 'Share Tech Mono', monospace !important;
     }
     
-    /* Hiệu ứng nhẹ nhàng cho chữ PALMISTRY */
     @keyframes softPixelGlow {
         0% {
             text-shadow: 0 0 1px #a78bfa, 0 0 2px #8b5cf6;
@@ -108,21 +107,21 @@ st.markdown("""
         margin: 0;
     }
     
-    /* Container cho quả cầu ở giữa */
     .sphere-container {
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         margin: 20px 0;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ============================================
-# HÀM TẠO QUẢ CẦU MA THUẬT PIXEL
+# HÀM TẠO QUẢ CẦU MA THUẬT CÓ CHỮ
 # ============================================
-def tao_qua_cau_pixel(kich_thuoc=120, goc_xoay=0):
-    """Tạo quả cầu ma thuật phong cách pixel với hiệu ứng động"""
+def tao_qua_cau_pixel(kich_thuoc=150, goc_xoay=0):
+    """Tạo quả cầu ma thuật pixel có chữ PALMISTRY bên trong"""
     pixel_size = 6
     img = Image.new('RGB', (kich_thuoc, kich_thuoc), (10, 10, 26))
     draw = ImageDraw.Draw(img)
@@ -131,16 +130,16 @@ def tao_qua_cau_pixel(kich_thuoc=120, goc_xoay=0):
     radius = kich_thuoc // 2 - pixel_size
     
     # Màu sắc ma thuật
-    mau_tim_ma_thuat = [(80, 50, 150), (120, 70, 180), (160, 100, 210), (200, 140, 240)]
+    mau_tim = [(60, 40, 120), (100, 60, 160), (140, 90, 200), (180, 130, 230)]
     mau_sang = [(220, 180, 255), (200, 150, 240)]
     
+    # Vẽ các pixel tạo thành quả cầu
     for x in range(0, kich_thuoc, pixel_size):
         for y in range(0, kich_thuoc, pixel_size):
-            # Tính vị trí với hiệu ứng xoay động
             dx = (x + pixel_size//2) - center
             dy = (y + pixel_size//2) - center
             
-            # Xoay theo góc
+            # Hiệu ứng xoay nhẹ
             cos_a = math.cos(goc_xoay)
             sin_a = math.sin(goc_xoay)
             dx_rot = dx * cos_a - dy * sin_a
@@ -151,41 +150,59 @@ def tao_qua_cau_pixel(kich_thuoc=120, goc_xoay=0):
             if distance <= radius:
                 intensity = 1 - (distance / radius)
                 
-                # Hiệu ứng ánh sáng lung linh
-                if distance < radius * 0.25:
+                if distance < radius * 0.3:
                     color_index = 3
-                elif distance < radius * 0.5:
+                elif distance < radius * 0.6:
                     color_index = 2
-                elif distance < radius * 0.75:
+                elif distance < radius * 0.8:
                     color_index = 1
                 else:
                     color_index = 0
                 
-                # Thêm hiệu ứng lấp lánh theo góc xoay
-                sparkle = math.sin(goc_xoay * 3 + dx * 0.1) * 20
+                # Thêm hiệu ứng lấp lánh
+                sparkle = math.sin(goc_xoay * 3 + dx * 0.1) * 15
                 
-                r = min(255, mau_tim_ma_thuat[color_index][0] + int(sparkle))
-                g = min(255, mau_tim_ma_thuat[color_index][1] + int(sparkle * 0.8))
-                b = min(255, mau_tim_ma_thuat[color_index][2] + int(sparkle * 1.2))
+                r = min(255, mau_tim[color_index][0] + int(sparkle))
+                g = min(255, mau_tim[color_index][1] + int(sparkle * 0.7))
+                b = min(255, mau_tim[color_index][2] + int(sparkle))
                 
-                # Hiệu ứng highlight di động
+                # Vùng sáng di chuyển
                 if abs(dx_rot) < radius * 0.2 and dy_rot < -radius * 0.3:
                     r, g, b = mau_sang[0]
                 elif abs(dx_rot) < radius * 0.15 and dy_rot < -radius * 0.15:
                     r, g, b = mau_sang[1]
                 
-                # Vẽ pixel
                 draw.rectangle(
                     [x, y, x + pixel_size - 1, y + pixel_size - 1],
                     fill=(r, g, b)
                 )
                 
-                # Viền pixel tạo hiệu ứng khối
                 draw.rectangle(
                     [x, y, x + pixel_size - 1, y + pixel_size - 1],
                     outline=(40, 30, 70),
                     width=1
                 )
+    
+    # Vẽ chữ PALMISTRY lên trên quả cầu
+    try:
+        # Thử dùng font pixel, nếu không có thì dùng font mặc định
+        font = ImageFont.truetype("PressStart2P-Regular.ttf", 12)
+    except:
+        font = ImageFont.load_default()
+    
+    # Chữ cần vẽ
+    text_lines = ["PALM", "ISTRY"]
+    text_y_start = center - 15
+    
+    for i, line in enumerate(text_lines):
+        # Lấy kích thước chữ
+        bbox = draw.textbbox((0, 0), line, font=font)
+        text_width = bbox[2] - bbox[0]
+        text_x = center - text_width // 2
+        text_y = text_y_start + i * 15
+        
+        # Vẽ chữ màu trắng sáng
+        draw.text((text_x, text_y), line, font=font, fill=(255, 220, 255))
     
     return img
 
@@ -215,7 +232,7 @@ st.markdown("""
     </div>
     <div class="subtitle">
         ======================<br>
-        PIXEL MAGIC SPHERE<br>
+        MAGIC PALM READING SPHERE<br>
         ======================
     </div>
 </div>
@@ -224,22 +241,20 @@ st.markdown("""
 st.markdown("---")
 
 # ============================================
-# QUẢ CẦU MA THUẬT Ở GIỮA + HIỆU ỨNG ĐỘNG
+# QUẢ CẦU MA THUẬT CÓ CHỮ Ở GIỮA
 # ============================================
 
-# Tạo placeholder cho quả cầu động
 sphere_placeholder = st.empty()
 
 # Hiệu ứng động - quả cầu xoay nhẹ
-for angle in range(0, 360, 10):
-    # Tạo quả cầu với góc xoay khác nhau
-    qua_cau = tao_qua_cau_pixel(kich_thuoc=150, goc_xoay=math.radians(angle))
-    sphere_placeholder.image(qua_cau, use_container_width=False, width=150)
-    time.sleep(0.05)  # Chậm vừa phải, hiệu ứng mượt
+for angle in range(0, 180, 15):
+    qua_cau = tao_qua_cau_pixel(kich_thuoc=160, goc_xoay=math.radians(angle))
+    sphere_placeholder.image(qua_cau, use_container_width=False, width=160)
+    time.sleep(0.03)
 
-# Giữ quả cầu ở góc cuối
-qua_cau_final = tao_qua_cau_pixel(kich_thuoc=150, goc_xoay=0)
-sphere_placeholder.image(qua_cau_final, use_container_width=False, width=150)
+# Giữ quả cầu ở trạng thái cuối
+qua_cau_final = tao_qua_cau_pixel(kich_thuoc=160, goc_xoay=0)
+sphere_placeholder.image(qua_cau_final, use_container_width=False, width=160)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
